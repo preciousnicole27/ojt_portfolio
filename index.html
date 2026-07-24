@@ -11,10 +11,6 @@
 
 <style>
 
-/* =========================
-   GENERAL
-========================= */
-
 *{
     margin:0;
     padding:0;
@@ -23,401 +19,471 @@
     scroll-behavior:smooth;
 }
 
+:root{
+    --cream:#FFF7ED;
+    --soft:#FFE7D1;
+    --orange:#F97316;
+    --orange-strong:#EA580C;
+    --orange-soft:#FB923C;
+    --text:#1F2937;
+    --muted:#6B7280;
+    --card:#ffffff;
+    --shadow:0 12px 30px rgba(249,115,22,.14);
+    --radius:24px;
+}
 
 body{
-
-    background:#F8FAFC;
-    color:#1F2937;
-
+    background:linear-gradient(180deg,#FFFDF9 0%,#FFF7ED 100%);
+    color:var(--text);
+    line-height:1.6;
+    overflow-x:hidden;
 }
 
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    z-index:-1;
+    border-radius:50%;
+    filter:blur(6px);
+    opacity:.55;
+    pointer-events:none;
+}
+
+body::before{
+    width:220px;
+    height:220px;
+    background:radial-gradient(circle at 30% 30%, #fdba74, #f97316 70%);
+    top:90px;
+    right:-40px;
+}
+
+body::after{
+    width:180px;
+    height:180px;
+    background:radial-gradient(circle at 30% 30%, #fed7aa, #fb923c 65%);
+    bottom:110px;
+    left:-30px;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+a{
+    text-decoration:none;
+}
 
 section{
-
-    padding:70px 8%;
-
+    padding:88px 8%;
+    position:relative;
 }
 
+section::before{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    border-radius:50% 35% 60% 40%;
+    background:linear-gradient(135deg, rgba(249,115,22,.18), rgba(251,146,60,.08));
+    z-index:-1;
+}
+
+section:nth-of-type(odd)::before{
+    top:24px;
+    right:4%;
+}
+
+section:nth-of-type(even)::before{
+    bottom:24px;
+    left:4%;
+}
 
 .section-title{
-
     text-align:center;
-    color:#1E3A5F;
-    font-size:30px;
-    margin-bottom:40px;
-
+    color:var(--orange-strong);
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:36px;
 }
 
+.reveal{
+    opacity:1;
+    transform:translateY(24px);
+    transition:all .7s ease;
+}
 
-
-/* =========================
-HEADER
-========================= */
-
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
 
 header{
-
-    background:#1E3A5F;
-    color:white;
-    padding:35px 8%;
-
+    position:sticky;
+    top:0;
+    z-index:1000;
+    padding:16px 8%;
+    background:rgba(255,255,255,.55);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(249,115,22,.15);
 }
 
-
-header h1{
-
-    font-size:30px;
-
+.header-inner{
+    max-width:1280px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:22px;
 }
 
-
-header p{
-
-    color:#D9EAF7;
-    margin-top:10px;
-
+.brand-title{
+    color:var(--orange-strong);
+    font-weight:700;
+    font-size:1.05rem;
+    letter-spacing:.3px;
 }
-
-
 
 nav{
-
-    margin-top:25px;
-
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
 }
-
 
 nav a{
-
-    color:white;
-    text-decoration:none;
-    margin-right:25px;
-    font-weight:500;
-    transition:.3s;
-
+    color:#7C2D12;
+    font-weight:600;
+    padding:10px 14px;
+    border-radius:999px;
+    transition:all .3s ease;
 }
 
-
+nav a.active,
 nav a:hover{
-
-    color:#8DB3D3;
-
+    background:linear-gradient(135deg,#F97316,#FB923C);
+    color:white;
+    box-shadow:0 8px 18px rgba(249,115,22,.25);
 }
 
-
-
-
-
-/* =========================
-HOME
-========================= */
-
-
-.home{
-
-    background:#EAF2F8;
-
+#home{
+    padding-top:56px;
 }
 
-
-.home h1{
-
-    color:#1E3A5F;
-    font-size:38px;
-
+.hero-layout{
+    display:grid;
+    grid-template-columns:1fr 1.15fr;
+    gap:28px;
+    align-items:center;
 }
 
-
-.home h2{
-
-    color:#274C77;
-    margin:15px 0;
-
+.hero-visual,
+.hero-copy,
+.about-card,
+.document-card,
+.photo-card,
+.contact-card{
+    background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,247,237,.96));
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
 }
 
-
-.home p{
-
-    max-width:900px;
-    line-height:1.8;
-
+.hero-visual::after,
+.hero-copy::after,
+.about-card::after,
+.document-card::after,
+.photo-card::after,
+.contact-card::after{
+    content:"";
+    position:absolute;
+    width:110px;
+    height:110px;
+    right:-20px;
+    top:-20px;
+    border-radius:50% 55% 50% 60%;
+    background:radial-gradient(circle at 30% 30%, rgba(251,146,60,.55), rgba(249,115,22,.12));
 }
 
-
-
-
-
-/* =========================
-ABOUT
-========================= */
-
-
-.about-box{
-
-    background:white;
-    display:flex;
-    gap:40px;
-    padding:35px;
-    border-radius:15px;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-
+.hero-visual{
+    padding:16px;
+    border:1px solid #FED7AA;
 }
 
-
-
-.about-box img{
-
-    width:230px;
-    height:230px;
+.hero-visual img{
+    width:100%;
+    height:520px;
     object-fit:cover;
-    border-radius:50%;
-    border:6px solid #6096BA;
-
+    border-radius:20px;
 }
 
-
-.about-box p{
-
-    margin:12px 0;
-    line-height:1.7;
-
+.hero-copy{
+    padding:36px;
+    border:1px solid #FED7AA;
 }
 
-
-.about-box h3{
-
-    color:#274C77;
-
+.hero-copy h1{
+    color:var(--orange-strong);
+    font-size:clamp(2rem,4vw,3.4rem);
+    line-height:1.1;
+    margin-bottom:12px;
 }
 
+.hero-copy h2{
+    color:var(--orange-soft);
+    font-size:1.35rem;
+    margin-bottom:16px;
+}
 
+.hero-copy p{
+    max-width:700px;
+    color:var(--muted);
+    margin-bottom:24px;
+}
 
+.hero-badges,
+.about-tags,
+.contact-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:18px;
+}
 
+.badge,
+.about-tag,
+.contact-tag{
+    background:var(--cream);
+    color:var(--orange-strong);
+    font-weight:700;
+    font-size:.78rem;
+    border:1px solid #FED7AA;
+    padding:8px 14px;
+    border-radius:999px;
+}
 
-/* =========================
-DOCUMENTATION
-========================= */
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:12px 22px;
+    border-radius:999px;
+    font-weight:700;
+    border:none;
+    cursor:pointer;
+    transition:all .3s ease;
+    position:relative;
+    overflow:hidden;
+}
 
+.btn-primary{
+    background:linear-gradient(135deg,var(--orange),var(--orange-soft));
+    color:white;
+    box-shadow:0 10px 22px rgba(249,115,22,.28);
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:0 14px 28px rgba(249,115,22,.36);
+}
+
+.btn::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,.18);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .45s ease;
+}
+
+.btn:hover::after{
+    transform:scaleX(1);
+}
+
+.about-card{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:28px;
+    padding:30px;
+    border:1px solid #FED7AA;
+}
+
+.about-portrait{
+    border-radius:22px;
+    overflow:hidden;
+    background:#FFF7ED;
+    border:1px solid #FED7AA;
+}
+
+.about-portrait img{
+    width:100%;
+    height:100%;
+    min-height:320px;
+    object-fit:cover;
+}
+
+.about-details h3{
+    color:var(--orange-strong);
+    margin-bottom:12px;
+}
+
+.about-details p{
+    color:var(--muted);
+    margin-bottom:12px;
+}
+
+.about-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:12px;
+    margin-top:16px;
+}
+
+.about-item{
+    background:#FFF7ED;
+    border:1px solid #FED7AA;
+    border-radius:18px;
+    padding:14px;
+}
+
+.about-item strong{
+    display:block;
+    color:var(--orange-strong);
+    font-size:.9rem;
+}
 
 #internship{
-
-    background:#EAF2F8;
-
+    background:#FFF7ED;
 }
 
-
-
-.document-container{
-
+.document-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
-
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:24px;
 }
-
-
 
 .document-card{
-
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-    transition:.3s;
-
+    padding:18px;
+    border:1px solid #FED7AA;
+    transition:all .35s ease;
 }
 
-
-.document-card:hover{
-
-    transform:translateY(-8px);
-
+.document-card:hover,
+.photo-card:hover{
+    transform:translateY(-8px) rotate(-.3deg);
+    box-shadow:0 18px 34px rgba(249,115,22,.24);
 }
 
-
-
-.document-card img{
-
+.document-card img,
+.photo-card img{
     width:100%;
     height:180px;
     object-fit:cover;
-    border-radius:10px;
-
+    border-radius:18px;
 }
 
-
-
-.document-card h3{
-
+.document-card h3,
+.photo-card h3{
     color:#1E3A5F;
-    margin:20px 0;
-
+    margin:16px 0 14px;
+    font-size:1.05rem;
 }
 
-
-
-.document-card a{
-
-    display:inline-block;
-    background:#274C77;
-    color:white;
-    padding:10px 20px;
-    border-radius:20px;
-    text-decoration:none;
-    transition:.3s;
-
+.document-card .btn{
+    width:100%;
 }
 
-
-
-.document-card a:hover{
-
-    background:#6096BA;
-
+.photo-gallery{
+    column-count:2;
+    column-gap:24px;
 }
-
-
-
-/* =========================
-PHOTOS
-========================= */
-
-
-#photos{
-
-    background:#EAF2F8;
-
-}
-
-
-.photo-container{
-
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
-
-}
-
 
 .photo-card{
-
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-    transition:.3s;
-
+    break-inside:avoid;
+    padding:16px;
+    margin-bottom:24px;
+    border:1px solid #FED7AA;
+    transition:all .35s ease;
 }
-
-
-.photo-card:hover{
-
-    transform:translateY(-8px);
-
-}
-
 
 .photo-card img{
-
-    width:100%;
-    height:200px;
-    object-fit:cover;
-    border-radius:10px;
-
+    height:auto;
+    border-radius:16px;
+    transition:transform .4s ease;
 }
 
-
-.photo-card h3{
-
-    color:#1E3A5F;
-    margin:20px 0;
-
+.photo-card:hover img{
+    transform:scale(1.03);
 }
 
-
-.photo-card p{
-
-    color:#666;
-    line-height:1.6;
-
+.contact-card{
+    max-width:700px;
+    margin:0 auto;
+    padding:28px;
+    border:1px solid #FED7AA;
 }
 
-
-
-/* =========================
-CONTACT
-========================= */
-
-
-.contact-box{
-
-    background:white;
-    padding:30px;
-    max-width:600px;
-    margin:auto;
-    border-radius:15px;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-
+.contact-list{
+    display:grid;
+    gap:14px;
 }
 
-
-
-.contact-box p{
-
-    margin:15px 0;
-
+.contact-item{
+    background:#FFF7ED;
+    border:1px solid #FED7AA;
+    border-radius:18px;
+    padding:16px;
 }
 
-
-
-
-/* =========================
-FOOTER
-========================= */
-
+.contact-item b{
+    color:var(--orange-strong);
+}
 
 footer{
-
-    background:#1E3A5F;
+    background:linear-gradient(135deg,#F97316,#FB923C);
     color:white;
     text-align:center;
-    padding:25px;
-
+    padding:26px 16px;
+    font-weight:700;
 }
 
+@media(max-width:900px){
+    .hero-layout,
+    .about-card,
+    .document-grid,
+    .photo-gallery{
+        grid-template-columns:1fr;
+    }
 
+    .about-grid{
+        grid-template-columns:1fr;
+    }
 
-
-
-/* =========================
-RESPONSIVE
-========================= */
-
-
-@media(max-width:768px){
-
-
-.about-box{
-
-    flex-direction:column;
-    text-align:center;
-
+    .header-inner{
+        flex-direction:column;
+        align-items:flex-start;
+    }
 }
 
+@media(max-width:600px){
+    section{
+        padding:72px 6%;
+    }
 
-nav a{
+    .hero-copy,
+    .about-card,
+    .contact-card{
+        padding:22px;
+    }
 
-    display:block;
-    margin:12px 0;
-
+    .hero-visual img{
+        height:360px;
+    }
 }
-
-
-}
-
-
 </style>
 
 </head>
@@ -429,30 +495,17 @@ nav a{
 
 
 
-<!-- HEADER -->
-
 <header>
-
-<h1>Precious Nicole J. Dela Cruz</h1>
-
-<p>Computer Engineering Student</p>
-
-
-<nav>
-
-<a href="#home">Home</a>
-
-<a href="#about">About Me</a>
-
-<a href="#internship">Internship</a>
-
-<a href="#photos">Photos</a>
-
-<a href="#contact">Contact</a>
-
-</nav>
-
-
+  <div class="header-inner">
+    <div class="brand-title">Precious Nicole J. Dela Cruz</div>
+    <nav>
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#internship">Internship</a>
+      <a href="#photos">Photos</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
 </header>
 
 
@@ -461,31 +514,28 @@ nav a{
 
 
 
-<!-- HOME -->
 
-<section id="home" class="home">
+<section id="home" class="reveal">
+  <div class="hero-layout">
+    <div class="hero-visual">
+      <img src="images/profile.jpg" alt="Precious Nicole Dela Cruz portrait">
+    </div>
 
+    <div class="hero-copy">
+      <div class="hero-badges">
+        <span class="badge">Computer Engineering</span>
+        <span class="badge">OJT Portfolio</span>
+      </div>
 
-<h1>
-Precious Nicole J. Dela Cruz
-</h1>
+      <h1>Precious Nicole J. Dela Cruz</h1>
+      <h2>2nd Year - Computer Engineering Student</h2>
+      <p>
+        Hi! I am Precious Nicole J. Dela Cruz, a Computer Engineering student. This website shows my OJT profile where I share my documents and experiences during my internship.
+      </p>
 
-
-<h2>
-2nd Year - Computer Engineering Student
-</h2>
-
-
-
-<p>
-
-Hi! I am Precious Nicole J. Dela Cruz, a Computer Engineering
-student. This website shows my OJT profile where I share
-my documents, and experiences during my internship.
-
-</p>
-
-
+      <a class="btn btn-primary" href="documents/resume.pdf" target="_blank">View Resume</a>
+    </div>
+  </div>
 </section>
 
 
@@ -494,64 +544,47 @@ my documents, and experiences during my internship.
 
 
 
-<!-- ABOUT -->
+<section id="about" class="reveal">
+  <h2 class="section-title">About Me</h2>
 
-<section id="about">
+  <div class="about-card">
+    <div class="about-portrait">
+      <img src="images/profile.jpg" alt="Profile image of Precious Nicole Dela Cruz">
+    </div>
 
+    <div class="about-details">
+      <h3>Personal Information</h3>
 
-<h2 class="section-title">
-About Me
-</h2>
+      <div class="about-tags">
+        <span class="about-tag">Programming</span>
+        <span class="about-tag">Technology</span>
+        <span class="about-tag">Hardware</span>
+      </div>
 
+      <p>
+        I am interested in programming, technology, hardware, and software development.
+      </p>
 
-<div class="about-box">
+      <p>
+        I continuously improve my skills through projects, learning, and internship experiences.
+      </p>
 
-
-<img src="images/profile.jpg">
-
-
-<div>
-
-
-<h3>
-Personal Information
-</h3>
-
-
-<p>
-I am interested in programming, technology,
-hardware, and software development.
-</p>
-
-
-<p>
-I continuously improve my skills through projects,
-learning, and internship experiences.
-</p>
-
-
-
-<p>
-<b>Name:</b> Precious Nicole J. Dela Cruz
-</p>
-
-
-<p>
-<b>Course:</b> Bachelor of Science in Computer Engineering
-</p>
-
-
-<p>
-<b>Year Level:</b> 2nd Year
-</p>
-
-
-</div>
-
-
-</div>
-
-
+      <div class="about-grid">
+        <div class="about-item">
+          <strong>Name</strong>
+          Precious Nicole J. Dela Cruz
+        </div>
+        <div class="about-item">
+          <strong>Course</strong>
+          Bachelor of Science in Computer Engineering
+        </div>
+        <div class="about-item">
+          <strong>Year Level</strong>
+          2nd Year
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 
@@ -561,112 +594,35 @@ learning, and internship experiences.
 
 
 
-<!-- DOCUMENTATION -->
+<section id="internship" class="reveal">
+  <h2 class="section-title">OJT Documents</h2>
 
-<section id="internship">
+  <div class="document-grid">
+    <div class="document-card">
+      <h3>Resume / Curriculum Vitae</h3>
+      <a class="btn btn-primary" href="documents/resume.pdf" target="_blank">View Document</a>
+    </div>
 
+    <div class="document-card">
+      <h3>Letter of Endorsement</h3>
+      <a class="btn btn-primary" href="documents/endorsement.pdf" target="_blank">View Document</a>
+    </div>
 
-<h2 class="section-title">
-OJT Documents
-</h2>
+    <div class="document-card">
+      <h3>Intent Letter</h3>
+      <a class="btn btn-primary" href="documents/intent.pdf" target="_blank">View Document</a>
+    </div>
 
+    <div class="document-card">
+      <h3>Medical Certificate</h3>
+      <a class="btn btn-primary" href="documents/medical.pdf" target="_blank">View Document</a>
+    </div>
 
-
-<div class="document-container">
-
-
-
-<div class="document-card">
-
-<img src="images/resume.jpg">
-
-<h3>
-Resume / Curriculum Vitae
-</h3>
-
-<a href="documents/resume.pdf" target="_blank">
-View Document
-</a>
-
-</div>
-
-
-
-
-
-<div class="document-card">
-
-<img src="images/endorsement.jpg">
-
-<h3>
-Endorsement Letter
-</h3>
-
-<a href="documents/endorsement.pdf" target="_blank">
-View Document
-</a>
-
-</div>
-
-
-
-
-
-<div class="document-card">
-
-<img src="images/intent.jpg">
-
-<h3>
-Intent Letter
-</h3>
-
-<a href="documents/intent.pdf" target="_blank">
-View Document
-</a>
-
-</div>
-
-
-
-
-
-<div class="document-card">
-
-<img src="images/medical.jpg">
-
-<h3>
-Medical Certificate
-</h3>
-
-<a href="documents/medical.pdf" target="_blank">
-View Document
-</a>
-
-</div>
-
-
-
-
-
-<div class="document-card">
-
-<img src="images/insurance.jpg">
-
-<h3>
-Insurance Certificate
-</h3>
-
-<a href="documents/insurance.pdf" target="_blank">
-View Document
-</a>
-
-</div>
-
-
-
-</div>
-
-
+    <div class="document-card">
+      <h3>Insurance Certificate</h3>
+      <a class="btn btn-primary" href="documents/insurance.pdf" target="_blank">View Document</a>
+    </div>
+  </div>
 </section>
 
 
@@ -675,104 +631,53 @@ View Document
 
 
 
-<!-- PHOTO DOCUMENTATION -->
+<section id="photos" class="reveal">
+  <h2 class="section-title">Photo Documentation</h2>
 
-<section id="photos">
+  <div class="photo-gallery">
+    <div class="photo-card">
+      <img src="images/week1.jpg" alt="Week 1 internship photo">
+      <h3>Week 1</h3>
+    </div>
 
+    <div class="photo-card">
+      <img src="images/week2.jpg" alt="Week 2 internship photo">
+      <h3>Week 2</h3>
+    </div>
 
-<h2 class="section-title">
-Photo Documentation
-</h2>
+    <div class="photo-card">
+      <img src="images/week3.jpg" alt="Week 3 internship photo">
+      <h3>Week 3</h3>
+    </div>
 
-
-<div class="photo-container">
-
-
-<div class="photo-card">
-
-<img src="images/activity1.jpg">
-
-<h3>
-Day 1
-</h3>
-
-
-</div>
-
-
-
-<div class="photo-card">
-
-<img src="images/activity2.jpg">
-
-<h3>
-Day 2
-</h3>
-
-</div>
-
-
-
-<div class="photo-card">
-
-<img src="images/activity3.jpg">
-
-<h3>
-Day 3
-</h3>
-
-
-</div>
-
-
-
-<div class="photo-card">
-
-<img src="images/activity4.jpg">
-
-<h3>
-Day 4
-</h3>
-
-
-</div>
-
-
-</div>
-
+    <div class="photo-card">
+      <img src="images/week4.jpg" alt="Week 4 internship photo">
+      <h3>Week 4</h3>
+    </div>
+  </div>
 </section>
 
 
 
 
-<!-- CONTACT -->
+<section id="contact" class="reveal">
+  <h2 class="section-title">Contact</h2>
 
+  <div class="contact-card">
+    <div class="contact-tags">
+      <span class="contact-tag">✉ Email</span>
+      <span class="contact-tag">💻 GitHub</span>
+    </div>
 
-<section id="contact">
-
-
-<h2 class="section-title">
-Contact
-</h2>
-
-
-<div class="contact-box">
-
-
-<p>
-<b>Email:</b> preciousnicoledelacruz.27@gmail.com
-</p>
-
-
-
-
-<p>
-<b>GitHub:</b> https://github.com/preciousnicole27
-
-</p>
-
-</div>
-
+    <div class="contact-list">
+      <div class="contact-item">
+        <b>Email:</b> preciousnicoledelacruz.27@gmail.com
+      </div>
+      <div class="contact-item">
+        <b>GitHub:</b> <a href="https://github.com/preciousnicole27" target="_blank" rel="noreferrer">https://github.com/preciousnicole27</a>
+      </div>
+    </div>
+  </div>
 </section>
 
 
@@ -786,13 +691,7 @@ Contact
 
 
 <footer>
-
-
-<p>
-© 2026 Precious Nicole J. Dela Cruz | All Rights Reserved
-</p>
-
-
+  <p>© 2026 Precious Nicole J. Dela Cruz | All Rights Reserved</p>
 </footer>
 
 
@@ -839,3 +738,5 @@ console.log("Website loaded successfully");
 </body>
 
 </html>
+
+
